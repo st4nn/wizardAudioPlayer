@@ -133,8 +133,16 @@ ocultarFila(16, true);
 var codigo;
 		if (Campos_Obligatorios(puerto, puntodemontaje, ancho, alto, TipoServidor) != false)
 	{
-			if (reproductor=="FFmp3"){
-			if (TipoServidor == "SHOUTcast") {puntodemontaje = "/;"}
+		var skinDef = '';
+			
+		if (reproductor=="FFmp3")
+		{
+			skinDef = skin;
+		} else
+		{
+			skinDef = skinJW;
+		}
+			
 			
 	var tit = "";
 		for (i = 0; i < titulo.length; i++) {
@@ -149,58 +157,17 @@ var codigo;
 		tit = tit + "%" + encodeToHex(tmpCadena);
 		}
 	mensajedebienvenida = tit;
-		
-codigo = "<!-- Inicio Codigo CeHis.net Streaming player --> \n" +
-		"<object height='" + alto + "' width='" + ancho + "'> \n" +
-		"<param name='movie' value='https://s3.amazonaws.com/cehis.net-streamingplayer/ffmp3-0.4.0/ffmp3-config.swf'/> \n" +
-		"<param name='flashvars' value='url=" + servidor + ":" + puerto + puntodemontaje + "&lang=sp&codec=mp3&volume=" + volumen + "&autoplay=" + autoplay + "&traking=false&jsevents=false&buffering=" + buffering + "&skin=https://s3.amazonaws.com/cehis.net-streamingplayer/ffmp3-0.4.0/skins/" + skin + "&title=" + titulo + "&welcome=" + mensajedebienvenida + "'/> \n" +
-		"<param name='wmode' value='transparent'/> \n" +
-		"<param name='allowscriptaccess' value='always'/> \n" +
-		"<param name='scale' value='noscale'/> \n" +
-		"<embed allowscriptaccess='always' \n" +
-		"src='https://s3.amazonaws.com/cehis.net-streamingplayer/ffmp3-0.4.0/ffmp3-config.swf' \n" +
-		"flashvars='url=" + servidor + ":" + puerto + puntodemontaje + "&lang=sp&codec=mp3&volume=" + volumen + "&autoplay=" + autoplay + "&traking=false&jsevents=false&buffering=" + buffering + "&skin=https://s3.amazonaws.com/cehis.net-streamingplayer/ffmp3-0.4.0/skins/" + skin + "&title=" + titulo + "&welcome=" + mensajedebienvenida + "' \n" +
-		"width='" + ancho + "' \n" +
-		"scale='noscale' \n" +
-		"height='" + alto + "' \n" +
-		"wmode='transparent' \n" +
-		"bgcolor='#FFFFFF' \n" +
-		"type='application/x-shockwave-flash' />\n" +
-		"</object> \n" +
-		"<!-- Fin Codigo CeHis.net Streaming player --> " ;
- 
-			}
-		
-		if (reproductor == "JWplayer") {
-			if (TipoServidor == "SHOUTcast") {puntodemontaje = "/;stream.mp3%3Ftype%3D.mp3"
-			reproductor = "player5-7/player.swf";
-			}
-			if (TipoServidor == "Icecast") {puntodemontaje += "%3Ftype%3D.flv";
-			reproductor = "player4.7/player4.7.swf";
-			}
-		codigo = "<!-- Inicia Codigo CeHis.Net --> \n " +
-		"<object width='" + ancho + "' height='" + alto + "'> \n" +
-		"<param name='movie' value='http://cehis.net/player4/player.swf'> \n" +
-		"<param name='allowfullscreen' value='true'> \n" +
-		"<param name='allowscriptaccess' value='always'> \n" +
-		"<param name='wmode' value='transparent'> \n" +
-		"<param name='flashvars' value='file=" + servidor + ":" + puerto  + puntodemontaje + "&skin=Skins/" + skinJW + "&bufferlength=" + buffering + "&volume=" + volumen + "&autostart=" + autoplay + "'> \n" +
-		"<embed \n" +
-		"type='application/x-shockwave-flash' \n" + 
-		"src='http://cehis.net/player4/player.swf' \n" +
-		"width='" + ancho + "' \n" +
-		"height='"+ alto + "' \n" +
-		"bgcolor='undefined' \n" +
-		"allowscriptaccess='always' \n" +
-		"allowfullscreen='true' \n" + 
-		"wmode='transparent' \n" +
-		"flashvars='file=" + servidor + ":" + puerto  + puntodemontaje + "&skin=Skins/" + skinJW + "&bufferlength=" + buffering + "&volume=" + volumen + "&autostart=" + autoplay + "'> \n" +
-		"</object> \n" +
-		"<!-- Fin Codigo CeHis.net Streaming player --> "
-										}
+
+
+
+codigo = "<iframe src='http://bronco.cehis.net/generarplayer/audio.php?var1=" + reproductor + "&var2=" + puerto + "&var3=" + puntodemontaje + "&var4=" + ancho + "&var5=" + alto + "&var6=" + volumen + "&var7=" + autoplay + "&var8=" + skinDef + "&var9=" + titulo + "&var10=" + mensajedebienvenida + "&var11=" + buffering + "' name='CeHis Audio PLayer'";
+codigo += "width='" + ancho + "' height='" + alto + "' scrolling='no' frameborder='0'>";
+codigo += "<p>El Servicio no fue encontrado</p>";
+codigo += "</iframe>";
+	}
 campo.value = codigo;									
 alert('Codigo Generado');
-	}
+
 	ocultarFila(16, false);
 }
 

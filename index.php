@@ -65,7 +65,7 @@ Shadowbox.init({language: "es", players: ['html']});
     </tr>
     <tr>
       <td>Punto de Montaje</td>
-      <td><input name="txtPuntodeMontaje" type="text" id="txtPuntodeMontaje"  tabindex="4" onblur="Validar_PuntoMontaje(this)"/></td>
+      <td><input name="txtPuntodeMontaje" type="text" id="txtPuntodeMontaje"  tabindex="4" /></td>
       <td><a href="#" class="tooltip">(?)<span>*Solo Aplica para Icecast <br /> (Mount point) Es el Punto de Montaje por el cual esta emitiendo su se&ntilde;al <br />
         Ej: /stream</span></a> </td>
     </tr>
